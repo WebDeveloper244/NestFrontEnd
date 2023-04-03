@@ -1,1 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import '../node_modules/primeng/resources/themes/omega/theme.css'; */
+/* You can add global styles to this file, and also import other style files */
+/* input validation code */
+
+
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+  animation: shake 300ms
+}
+
+textarea.ng-invalid.ng-touched {
+  border: 2px solid red;
+  animation: shake 300ms
+}
+
+input.ng-valid.ng-touched {
+  border: 2px solid green;
+}
+
+textarea.ng-valid.ng-touched {
+  border: 2px solid green;
+}
+
+select.ng-invalid.ng-touched {
+  border: 2px solid red;
+  animation: shake 300ms
+}
+
+select.ng-valid.ng-touched {
+  border: 2px solid green;
+}
+
+* {
+  font-family: 'Fira Sans', sans-serif;
+}
+
+@keyframes shake {
+  25% {
+    transform: translateX(4px)
+  }
+
+  50% {
+    transform: translateX(-4px)
+  }
+
+  75% {
+    transform: translateX(4px)
+  }
+}
+
+/* input validation code */
+
+
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";

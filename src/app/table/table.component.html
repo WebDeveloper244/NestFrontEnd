@@ -1,0 +1,126 @@
+<div class="container mt-5">
+  <div class="row">
+    <table class="table caption-top">
+      <caption>List of users</caption>
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title Name</th>
+          <th scope="col">Author</th>
+          <th scope="col">Category</th>
+          <th scope="col">Price</th>
+          <th scope="col" colspan="3"> Button</th>
+
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of allBooks">
+        <tr>
+          <th scope="row">1</th>
+          <td>{{item.title}}</td>
+          <td>{{item.author}}</td>
+          <td>{{item.category}}</td>
+          <td>{{item.price}}</td>
+          <td>
+            <i class="fas fa-eye text-dark" data-bs-toggle="modal" data-bs-target="#exampleModal1" role="button" (click)="getBookDataWithId(item?._id)"></i>
+          </td>
+          <td>
+            <i class="fa-solid fa-trash text-danger"  data-bs-toggle="modal" data-bs-target="#exampleModal" role="button" (click)="openModal(item?._id)"></i>
+          </td>
+          <td>
+            <i class="fa-solid fa-trash text-warning" role="button" (click)="softDeleteBookWithId(item?._id)"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- updating modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1"  aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Books</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row text-center">
+            <div class="col">
+
+              <!-- Form-Updating -->
+              <div class="container">
+                <ng-container >
+                  <form (ngSubmit)="updateBookForm()" [formGroup]="updatingBookForm">
+                    <div class="row">
+                      <div class="col-12 mb-3">
+                        <div class="form-floating">
+                          <select class="form-select" id="category-name" aria-label="Floating label select example"
+                            formControlName="category">
+                            <option value="Advanture">Advanture</option>
+                            <option value="Anime">Anime</option>
+                            <option value="Classic">Classic</option>
+                          </select>
+                          <label for="category-name">category Name</label>
+                        </div>
+                      </div>
+            
+                      <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                          <input type="text" class="form-control" id="author" placeholder="author" formControlName="author">
+                          <label for="author">Author Name</label>
+                        </div>
+                      </div>
+            
+                      <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                          <input type="text" class="form-control" id="title" placeholder="title" formControlName="title">
+                          <label for="title">Title Name</label>
+                        </div>
+                      </div>
+            
+                      <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                          <input type="text" class="form-control" id="price" placeholder="price" formControlName="price">
+                          <label for="price">Price</label>
+                        </div>
+                      </div>
+            
+                      <div class="col-12">
+                        <div class="row">
+                          <div class="col-12">
+                            <button type="submit" class="btn btn-outline-dark w-100 fw-bold">update</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+                </ng-container>
+              </div>
+              <!-- Form-Updating -->
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" >Close Modal</button>
+        </div>
+      </div>
+    </div>
+</div>
+<!-- updating modal -->
+
+<!-- conformation Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Item</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" data-bs-dismiss="modal" class="btn btn-outline-danger" (click)="deleteBookWithId(deleteId)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--conformation Modal -->
