@@ -6,16 +6,25 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { TableComponent } from './table/table.component';
-import { ButtonModule } from 'primeng/button';
+import { ButtonModule  } from 'primeng/button';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
+import { RippleModule } from 'primeng/ripple';
+import { TableModule } from 'primeng/table';
+import { PrimeComponent } from './prime/prime.component';
+import { DialogModule } from 'primeng/dialog';
+import { ToastModule } from 'primeng/toast';
+import { ToolbarModule } from 'primeng/toolbar';
+import { InputTextModule } from 'primeng/inputtext';
+import { CheckboxModule } from 'primeng/checkbox';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     TableComponent,
-    HeaderComponent
+    HeaderComponent,
+    PrimeComponent
   ],
   imports: [
     BrowserModule,
@@ -23,9 +32,15 @@ import { HeaderComponent } from './header/header.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    ButtonModule
-    ,
+    ButtonModule,
     BrowserAnimationsModule,
+    RippleModule,
+    TableModule,
+    DialogModule,
+    ToastModule,
+    ToolbarModule,
+    InputTextModule,
+    CheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

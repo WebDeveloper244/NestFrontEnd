@@ -1,0 +1,151 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="card">
+        <p-toast></p-toast>
+        <p-toolbar styleClass="mb-4 gap-2">
+            <ng-template pTemplate="left">
+                <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger"
+                    (click)="deleteSelectedBooks()" [disabled]="!selectedBooks || !selectedBooks.length"></button>
+            </ng-template>
+        </p-toolbar>
+        <p-table #dtSearch [value]="allBooks" [paginator]="true" [rows]="10"
+        [(selection)]="selectedBooks"
+        
+            [globalFilterFields]="['title', 'author', 'category', 'price']" [tableStyle]="{ 'min-width': '75rem' }"
+            [rowHover]="true" dataKey="id"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [showCurrentPageReport]="true">
+
+            <ng-template pTemplate="caption" class="">
+                <div class="table-header d-flex justify-content-between">
+                    <span>List of Customers</span>
+                    <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text" (input)="dtSearch.filterGlobal($event.target, 'contains')"
+                            placeholder="Global Search" />
+                    </span>
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" >
+                <tr class="bg-dark">
+                    <th style="width: 4rem">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th pSortableColumn="title" style="min-width:15rem">Title <p-sortIcon field="title"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="author" style="min-width:15rem">Author <p-sortIcon field="author"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="category" style="min-width:15rem">Category <p-sortIcon
+                            field="category"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="price" style="min-width:15rem">Price <p-sortIcon field="price"></p-sortIcon>
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-allBooks>
+                <tr>
+                    <td>
+                        <p-tableCheckbox [value]="allBooks"></p-tableCheckbox>
+                    </td>
+                    <td>{{allBooks.title}}</td>
+                    <td>{{allBooks.author}}</td>
+                    <td>{{allBooks.category}}</td>
+                    <td>{{allBooks.price}}</td>
+                    <td>
+                        <p-button icon="pi pi-pencil" styleClass="p-button-success"
+                            (click)="showEditFormBox=true;" (Click)="getBookDataWithId(allBooks._id)"
+                            icon="pi pi-pencil"></p-button>
+
+                        <p-button icon="pi pi-trash"
+                            styleClass=" p-button-danger ms-3"
+                            (click)="showDialog('top',allBooks._id)" icon="pi p pi-trash" pRipple></p-button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+    </div>
+</div>
+
+
+
+
+<!-- prime-modal -->
+<p-dialog header="Delete Book" [(visible)]="showDialogBox" [modal]="true" [style]="{ width: '30vw' }"
+    [position]="position" [draggable]="false" [resizable]="false">
+    <hr>
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="showDialogBox = false" label="Cancel"
+            styleClass="p-button-outlined p-button-warning"></p-button>
+        <p-button icon="pi pi-check" (click)="showDialogBox = false; deleteBookWithId(makeMyIdPublic)" label="Delete"
+            styleClass="p-button-outlined p-button-danger"></p-button>
+    </ng-template>
+</p-dialog>
+<!-- prime-modal -->
+
+<!-- prime-modal -->
+<p-dialog header="Delete Book" [(visible)]="showEditFormBox" [modal]="true" [style]="{ width: '30vw'}"
+    [draggable]="false" [resizable]="false">
+
+    <!-- updateForm -->
+    <div class="container">
+        <ng-container>
+            <form (ngSubmit)="updateBookForm()" [formGroup]="updatingBookForm">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <div class="form-floating">
+                            <select class="form-select" id="category-name" aria-label="Floating label select example"
+                                formControlName="category">
+                                <option value="Advanture">Advanture</option>
+                                <option value="Anime">Anime</option>
+                                <option value="Classic">Classic</option>
+                            </select>
+                            <label for="category-name">category Name</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="author" placeholder="author"
+                                formControlName="author">
+                            <label for="author">Author Name</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="title" placeholder="title"
+                                formControlName="title">
+                            <label for="title">Title Name</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="price" placeholder="price"
+                                formControlName="price">
+                            <label for="price">Price</label>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-outline-dark w-100 fw-bold">update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </ng-container>
+    </div>
+    <!-- updateForm -->
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="showEditFormBox = false; deleteBookWithId(makeMyIdPublic)" label="Close"
+            styleClass="p-button-outlined p-button-primary" pRipple></p-button>
+    </ng-template>
+</p-dialog>
+<!-- prime-modal -->

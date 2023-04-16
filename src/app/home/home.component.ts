@@ -1,19 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { SharedService } from '../shared.service';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
   public bookForm: any | FormGroup;
   constructor(
     private readonly formbuilder: FormBuilder,
-    private readonly service: SharedService
-  ){
+    private readonly service: SharedService,
+    private primengConfig: PrimeNGConfig
+  ) {
     this.bookFormIntialization();
+  }
+
+  ngOnInit() {
+    this.primengConfig.ripple = true;
   }
 
   bookFormIntialization() {
@@ -33,5 +39,5 @@ export class HomeComponent {
       console.log(res);
       this.bookForm.reset()
     })
-}
+  }
 }

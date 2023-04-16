@@ -11,26 +11,26 @@ export class SharedService {
   ) { }
 
   createBookData(payLoad: any) {
-    return this.httpClient.post('http://localhost:3000/bookcontroller', payLoad);
+    return this.httpClient.post('http://localhost:3000/books-controller', payLoad);
   }
 
   getAllBookData() {
-    return this.httpClient.get('http://localhost:3000/bookcontroller');
+    return this.httpClient.get('http://localhost:3000/books-controller');
   }
 
   getIdBookData(_id: any) {
-    return this.httpClient.get(`http://localhost:3000/bookcontroller/${_id}`);
+    return this.httpClient.get(`http://localhost:3000/books-controller/${_id}`);
   }
 
   updateBookData(payLoad: any) {
-    return this.httpClient.post('http://localhost:3000/bookcontroller/', payLoad);
+    return this.httpClient.post('http://localhost:3000/books-controller/', payLoad);
   }
 
   deleteBookWithId(_id: any) {
-    return this.httpClient.delete(`http://localhost:3000/bookcontroller/${_id}`);
+    return this.httpClient.delete(`http://localhost:3000/books-controller/${_id}`);
   }
 
   softDeleteBookWithId(_id: any) {
-    return this.httpClient.delete(`http://localhost:3000/bookcontroller/changeStatus/${_id}`);
+    return this.httpClient.delete(`http://localhost:3000/books-controller/changeStatus/${_id}`);
   }
 }

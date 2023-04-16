@@ -90,5 +90,10 @@ export class TableComponent {
     })
   
 }
+
+
+
+
+
   
 }

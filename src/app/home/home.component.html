@@ -1,85 +1,88 @@
 <div class="container mt-5">
-    <div class="row">
-      <div class="col-lg-9">
-        <form (ngSubmit)="submitBookForm()" [formGroup]="bookForm">
-          <div class="row">
-            <div class="col-12 mb-3">
-              <div class="form-floating">
-                <select class="form-select" id="category-name" aria-label="Floating label select example"
-                  formControlName="category">
-                  <option value="Advanture">Advanture</option>
-                  <option value="Anime">Anime</option>
-                  <option value="Classic">Classic</option>
-                </select>
-                <label for="category-name">category Name</label>
-              </div>
-              <div class="error  text-danger"
-                *ngIf="bookForm.controls['category'].invalid && (bookForm.controls['category'].dirty || bookForm.controls['category'].touched)">
-                <span *ngIf="bookForm.controls['category'].errors.required">
-                  <small>Field Required!</small>
-                </span>
-              </div>
+  <div class="row">
+    <div class="col-lg-9">
+      <form (ngSubmit)="submitBookForm()" [formGroup]="bookForm">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <div class="form-floating">
+              <select class="form-select" id="category-name" aria-label="Floating label select example"
+                formControlName="category">
+                <option value="Advanture">Advanture</option>
+                <option value="Anime">Anime</option>
+                <option value="Classic">Classic</option>
+              </select>
+              <label for="category-name">category Name</label>
             </div>
-  
-            <div class="col-md-6">
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="author" placeholder="author" formControlName="author">
-                <label for="author">Author Name</label>
-              </div>
-              <div class="error  text-danger"
-                *ngIf="bookForm.controls['author'].invalid && (bookForm.controls['author'].dirty || bookForm.controls['author'].touched)">
-                <span *ngIf="(bookForm.controls['author'].errors.pattern)">
-                  Only Alphabets allowed</span>
-                <span *ngIf="bookForm.controls['author'].errors.required">
-                  <small>Field Required!</small>
-                </span>
-              </div>
+            <div class="error  text-danger"
+              *ngIf="bookForm.controls['category'].invalid && (bookForm.controls['category'].dirty || bookForm.controls['category'].touched)">
+              <span *ngIf="bookForm.controls['category'].errors.required">
+                <small>Field Required!</small>
+              </span>
             </div>
-  
-            <div class="col-md-6">
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="title" placeholder="title" formControlName="title">
-                <label for="title">Title Name</label>
-              </div>
-              <div class="error  text-danger"
-                *ngIf="bookForm.controls['title'].invalid && (bookForm.controls['title'].dirty || bookForm.controls['title'].touched)">
-                <span *ngIf="(bookForm.controls['title'].errors.pattern)">
-                  Only Alphabets allowed</span>
-                <span *ngIf="bookForm.controls['title'].errors.required">
-                  <small>Field Required!</small>
-                </span>
-              </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="author" placeholder="author" formControlName="author">
+              <label for="author">Author Name</label>
             </div>
-  
-            <div class="col-md-6">
-              <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="price" placeholder="price" formControlName="price">
-                <label for="price">Price</label>
-              </div>
-              <div class="error  text-danger"
-                *ngIf="bookForm.controls['price'].invalid && (bookForm.controls['price'].dirty || bookForm.controls['price'].touched)">
-                <span *ngIf="bookForm.controls['price'].errors.minlength || bookForm.controls['price'].errors.maxlength ">
-                  <small>Number should be atleast 6 digits</small></span>
-                <span *ngIf="(bookForm.controls['price'].errors.pattern)">
-                  only numbers allowed</span>
-                <span *ngIf="bookForm.controls['price'].errors.required">
-                  <small>Field Required!</small>
-                </span>
-              </div>
+            <div class="error  text-danger"
+              *ngIf="bookForm.controls['author'].invalid && (bookForm.controls['author'].dirty || bookForm.controls['author'].touched)">
+              <span *ngIf="(bookForm.controls['author'].errors.pattern)">
+                Only Alphabets allowed</span>
+              <span *ngIf="bookForm.controls['author'].errors.required">
+                <small>Field Required!</small>
+              </span>
             </div>
-  
-            <div class="col-12">
-              <div class="row">
-                <div class="col-12">
-                  <button type="submit" class="btn btn-outline-dark w-100 fw-bold"
-                    [disabled]="bookForm.pristine || bookForm.invalid">Send</button>
-                </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="title" placeholder="title" formControlName="title">
+              <label for="title">Title Name</label>
+            </div>
+            <div class="error  text-danger"
+              *ngIf="bookForm.controls['title'].invalid && (bookForm.controls['title'].dirty || bookForm.controls['title'].touched)">
+              <span *ngIf="(bookForm.controls['title'].errors.pattern)">
+                Only Alphabets allowed</span>
+              <span *ngIf="bookForm.controls['title'].errors.required">
+                <small>Field Required!</small>
+              </span>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="price" placeholder="price" formControlName="price">
+              <label for="price">Price</label>
+            </div>
+            <div class="error  text-danger"
+              *ngIf="bookForm.controls['price'].invalid && (bookForm.controls['price'].dirty || bookForm.controls['price'].touched)">
+              <span *ngIf="bookForm.controls['price'].errors.minlength || bookForm.controls['price'].errors.maxlength ">
+                <small>Number should be atleast 6 digits</small></span>
+              <span *ngIf="(bookForm.controls['price'].errors.pattern)">
+                only numbers allowed</span>
+              <span *ngIf="bookForm.controls['price'].errors.required">
+                <small>Field Required!</small>
+              </span>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="row">
+              <div class="col-12">
+                <!-- <button type="submit" class="btn btn-outline-dark w-100 fw-bold"
+                    [disabled]="bookForm.pristine || bookForm.invalid">Send</button> -->
+                <button pButton pRipple label="Submit" class="p-button-success w-100"></button>
+
+
               </div>
             </div>
           </div>
-        </form>
-  
-  
-      </div>
+        </div>
+      </form>
+
+
     </div>
   </div>
+</div>
